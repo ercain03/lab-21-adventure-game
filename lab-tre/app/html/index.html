@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="gameApp">
+  <head>
+    <title>Treasure Hunt</title>
+    <script src="bundle.js"></script>
+    <link rel="stylesheet" href="bundle.css" />
+  </head>
+  <body>
+    <main ng-controller="GameController as gameCtrl">
+      <h1>Welcome Matey!</h1>
+      <p>Swim through th' different rooms collectin' all th' lovely booty:</p>
+      <form name="gameForm" novalidate>
+        <label for="direction">Pick a direction to proceed:</label>
+        <select name="direction" ng-model="gameForm.direction">
+          <option ng-repeat="direction in gameCtrl.directions" value="{{direction}}">
+            {{direction}}
+          </option>
+        </select>
+        <button class="btn btn-primary" type="button" ng-click="gameCtrl.moveDirection(gameForm.direction)">Swim</button>
+      </form>
+
+      <ol>
+        <li ng-repeat="item in gameCtrl.history track by item.id">
+          {{item.text}}
+        </li>
+      </ol>
+      <div class="bottom_img">
+        <img src="http://s3.amazonaws.com/fedscoop-media/uploads/2013_11_treasure-chest.jpg?mtime=20150109102228" alt="treasure chest" />
+      </div>
+    </main>
+  </body>
+</html>
